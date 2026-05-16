@@ -157,4 +157,61 @@
   <Target Name="DllExportRPkgDynamicImport" BeforeTargets="PostBuildEvent" DependsOnTargets="GetFrameworkPaths" Condition="'$(DllExportModImported)'!='true' And '$(DllExportRPkgDyn)'!='false'">
     <MSBuild BuildInParallel="true" UseResultsCache="true" Projects="$(MSBuildProjectFullPath)" Properties="Configuration=$(Configuration);DllExportRPkgDyn=true" Targets="Build" />
   </Target>
+  <Target Name="InjectGitVersion" BeforeTargets="CoreCompile">
+    <!-- 1. 获取最新 tag (如果有的话) 作为基础版本 -->
+    <Exec Command="git describe --tags --abbrev=0" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitBaseVersion" />
+    </Exec>
+    <PropertyGroup>
+      <!-- 如果没有Tag，默认设为 1.0.0 -->
+      <GitBaseVersion Condition="'$(GitBaseVersion)' == '' Or $(GitBaseVersion.Contains('fatal'))">1.0.0</GitBaseVersion>
+      <!-- 移除可能存在的 v 前缀 (例如把 v1.2 变成 1.2) -->
+      <GitBaseVersion>$([System.Text.RegularExpressions.Regex]::Replace($(GitBaseVersion), `^v`, ``))</GitBaseVersion>
+    </PropertyGroup>
+
+    <!-- 2. 获取自上一个 Tag 之后的 Commit 数量 (如果 Tag=1.0.0, 这里算的就是 Patch 号) -->
+    <Exec Command="git rev-list --count $(GitBaseVersion)..HEAD" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true" Condition="'$(GitBaseVersion)' != '1.0.0'">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitPatchCount" />
+    </Exec>
+    <!-- 如果连 Tag 都没有，就退化为使用全部 commit 数量 -->
+    <Exec Command="git rev-list --count HEAD" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true" Condition="'$(GitBaseVersion)' == '1.0.0' Or '$(GitPatchCount)' == '' Or $(GitPatchCount.Contains('fatal'))">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitPatchCount" />
+    </Exec>
+
+    <!-- 3. 获取 Git 的简短 Commit Hash 和分支名 -->
+    <Exec Command="git rev-parse --short HEAD" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitCommitHash" />
+    </Exec>
+    <Exec Command="git rev-parse --abbrev-ref HEAD" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitBranchName" />
+    </Exec>
+
+    <!-- 异常情况回退默认值 -->
+    <PropertyGroup>
+      <GitCommitHash Condition="'$(GitCommitHash)' == '' Or $(GitCommitHash.Contains('fatal'))">unknown</GitCommitHash>
+      <GitBranchName Condition="'$(GitBranchName)' == '' Or $(GitBranchName.Contains('fatal'))">local</GitBranchName>
+      <GitPatchCount Condition="'$(GitPatchCount)' == '' Or $(GitPatchCount.Contains('fatal'))">0</GitPatchCount>
+    </PropertyGroup>
+
+    <!-- 动态为程序集附加完整版本号属性 -->
+    <ItemGroup>
+      <!-- 标准版本号: Tag号.Patch级.0 (如: 1.2.3) -->
+      <AssemblyAttributes Include="System.Reflection.AssemblyVersionAttribute">
+        <_Parameter1>$(GitBaseVersion).$(GitPatchCount)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="System.Reflection.AssemblyFileVersionAttribute">
+        <_Parameter1>$(GitBaseVersion).$(GitPatchCount)</_Parameter1>
+      </AssemblyAttributes>
+      <!-- Informational 详细版本: 1.2.3-master-a1b2c3d -->
+      <AssemblyAttributes Include="System.Reflection.AssemblyInformationalVersionAttribute">
+        <_Parameter1>$(GitBaseVersion).$(GitPatchCount)-$(GitBranchName)-$(GitCommitHash)</_Parameter1>
+      </AssemblyAttributes>
+    </ItemGroup>
+
+    <WriteCodeFragment Language="C#" OutputFile="$(IntermediateOutputPath)VersionInfo.g.cs" AssemblyAttributes="@(AssemblyAttributes)" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)VersionInfo.g.cs" />
+    </ItemGroup>
+  </Target>
+
 </Project>

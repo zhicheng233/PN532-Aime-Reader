@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -21,6 +22,15 @@ namespace NfcAime.Dll {
         {
             AllocConsole();
 
+            // 读取如 "1.0.0-a1b2c3d-master" 这种详细版本信息
+            var versionString = Assembly.GetExecutingAssembly()
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                .InformationalVersion;
+
+            Console.WriteLine($"PN532 Aime Reader - Version {versionString}");
+            Console.WriteLine("Make With Love By ZCROM - FROM MikuNet");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine($"{Config.ReaderCOM}   Baud:{Config.ReaderBaud}   Mode:{(Config.IDmMode == 1 ? "IDmMode" : "AccessCodeMode")}");
             reader = new AimeReader(port: Config.ReaderCOM, baud: Config.ReaderBaud);
             return 0;
         }
