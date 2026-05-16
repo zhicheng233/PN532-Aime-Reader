@@ -1,0 +1,34 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NfcAime.Cli", "src\NfcAime.Cli\Nfcaime.Cli.csproj", "{BAD35401-BA7C-633C-3088-B4D88E8C1516}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NfcAime.Dll", "src\NfcAime.Dll\NfcAime.Dll.csproj", "{2ED77BFD-0EF1-49C4-A199-75D89EC3941E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAD35401-BA7C-633C-3088-B4D88E8C1516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAD35401-BA7C-633C-3088-B4D88E8C1516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAD35401-BA7C-633C-3088-B4D88E8C1516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAD35401-BA7C-633C-3088-B4D88E8C1516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAD35401-BA7C-633C-3088-B4D88E8C1516}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BAD35401-BA7C-633C-3088-B4D88E8C1516}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2ED77BFD-0EF1-49C4-A199-75D89EC3941E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED77BFD-0EF1-49C4-A199-75D89EC3941E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED77BFD-0EF1-49C4-A199-75D89EC3941E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED77BFD-0EF1-49C4-A199-75D89EC3941E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ED77BFD-0EF1-49C4-A199-75D89EC3941E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2ED77BFD-0EF1-49C4-A199-75D89EC3941E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F6D6CBD-6360-4FBA-84B9-36604BFE2F8B}
+	EndGlobalSection
+EndGlobal
