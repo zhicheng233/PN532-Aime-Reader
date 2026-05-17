@@ -45,11 +45,15 @@ public class AimeReader
 
     public (CardKind CardKind, byte[] IDm, string AccessCode) ReadCard()
     {
-        session.Open();
         try
         {
+            session.Open();
             var result = RunPn532Flow(session);
             return (result.CardKind , result.CardId, result.AccessCode);
+        } catch (Exception ex)
+        {
+            Console.WriteLine($"Error during card read: {ex.Message}");
+            return (CardKind.Null, Array.Empty<byte>(), "");
         }
         finally { session.Close(); }
     }
