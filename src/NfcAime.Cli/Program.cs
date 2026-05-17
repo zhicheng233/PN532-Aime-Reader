@@ -94,9 +94,19 @@ internal static class Program
 
     private static void RunDiag(CliOptions options)
     {
-        using var serial = new SerialPort(options.Port, options.Baud) { ReadTimeout = 500, WriteTimeout = 500 };
+        using var serial = new SerialPort(options.Port, options.Baud)
+        {
+            ReadTimeout = 500,
+            WriteTimeout = 500,
+            DtrEnable = true,
+            RtsEnable = false
+        };
         serial.Open();
-        serial.Write(new byte[] { 0x55, 0x55, 0x00, 0x00, 0x00 }, 0, 5);
+        serial.DtrEnable = true;
+        serial.RtsEnable = false;
+        Thread.Sleep(250);
+        var wakeup = new byte[] { 0x55, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+        serial.Write(wakeup, 0, wakeup.Length);
         Thread.Sleep(50);
         var fw = Pn532HsuFrame.BuildDataFrame(Pn532HsuFrame.HostToPn532Tfi, new byte[] { 0x02 });
         serial.Write(fw, 0, fw.Length);
@@ -113,7 +123,7 @@ internal static class Program
     private static FlowResult RunPn532FelicaFlow(Pn532Session session)
     {
         ExpectPn532ResponseCode(session.SendCommand(new byte[] { 0x02 }), expectedResponseCode: 0x03);
-        ExpectPn532StatusOk(session.SendCommand(new byte[] { 0x14, 0x01, 0x14, 0x01 }), expectedResponseCode: 0x15);
+        ExpectPn532StatusOk(session.SendCommand(new byte[] { 0x14, 0x01 }), expectedResponseCode: 0x15);
         ExpectPn532StatusOk(session.SendCommand(new byte[] { 0x32, 0x01, 0x03 }), expectedResponseCode: 0x33);
 
         var target = WaitForCard(session);

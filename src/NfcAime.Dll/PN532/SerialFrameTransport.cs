@@ -29,7 +29,7 @@ namespace NfcAime.Dll.PN532 {
                 Parity = Parity.None,
                 DataBits = 8,
                 StopBits = StopBits.One,
-                DtrEnable = false,
+                DtrEnable = true,
                 RtsEnable = false
             };
             _readChunkTimeout = chunkTimeout;
@@ -41,6 +41,9 @@ namespace NfcAime.Dll.PN532 {
             if (!_port.IsOpen)
             {
                 _port.Open();
+                _port.DtrEnable = true;
+                _port.RtsEnable = false;
+                Thread.Sleep(250);
                 _port.DiscardInBuffer();
                 _port.DiscardOutBuffer();
                 SendWakeupPattern();
@@ -76,9 +79,11 @@ namespace NfcAime.Dll.PN532 {
         {
             // Simple HSU wakeup: Just long preamble.
             // We avoid sending SAMConfig here to keep the buffer clean for the first real command.
-            var wakeup = new byte[] { 0x55, 0x55, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+            var wakeup = new byte[] { 0x55, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
             _port.Write(wakeup, 0, wakeup.Length);
-            Thread.Sleep(50);
+            var sam = Pn532HsuFrame.BuildDataFrame(Pn532HsuFrame.HostToPn532Tfi, new byte[] { 0x14, 0x01 });
+            _port.Write(sam, 0, sam.Length);
+            Thread.Sleep(100);
 
             if (_port.IsOpen)
             {

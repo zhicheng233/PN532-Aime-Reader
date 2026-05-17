@@ -62,7 +62,7 @@ public class AimeReader
     private FlowResult RunPn532Flow(Pn532Session session)
     {
         ExpectPn532ResponseCode(session.SendCommand(new byte[] { 0x02 }), expectedResponseCode: 0x03);
-        ExpectPn532StatusOk(session.SendCommand(new byte[] { 0x14, 0x01, 0x14, 0x01 }), expectedResponseCode: 0x15);
+        ExpectPn532StatusOk(session.SendCommand(new byte[] { 0x14, 0x01 }), expectedResponseCode: 0x15);
         ExpectPn532StatusOk(session.SendCommand(new byte[] { 0x32, 0x01, 0x03 }), expectedResponseCode: 0x33);
 
         var target = WaitForCard(session);
