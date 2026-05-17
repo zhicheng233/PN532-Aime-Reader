@@ -7,7 +7,7 @@ namespace NfcAime.Dll;
 internal static class Config
 {
     internal const string IOSection = "aimeio";
-    private const string ConfigFileName = @".\segatools.ini";
+    private static string ConfigFileName = Environment.GetEnvironmentVariable("SEGATOOLS_CONFIG_PATH") == null ? @".\segatools.ini" : Environment.GetEnvironmentVariable("SEGATOOLS_CONFIG_PATH");
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
     private static extern uint GetPrivateProfileString(
