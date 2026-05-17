@@ -21,7 +21,7 @@ internal static class Config
     static Config()
     {
         IDmMode = Convert.ToInt32(ReadKey(IOSection, "IDmMode", 1024, "1"));
-        ReaderCOM = ReadKey(IOSection, "ReaderCOM" , 1024, "COM3");
+        ReaderCOM = ReadKey(IOSection, "ReaderCOM" , 1024, "COM8");
         ReaderBaud = Convert.ToInt32(ReadKey(IOSection, "Baud" , 1024, "115200"));
     }
 
