@@ -11,6 +11,7 @@
     <RootNamespace>NfcAime.Dll</RootNamespace>
     <AssemblyName>NfcAime.Dll</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <DllExportTargetFrameworkVersion>v4.5</DllExportTargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <LangVersion>13</LangVersion>
