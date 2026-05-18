@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/NfcAime.Dll.csproj": {}
+  },
+  "projects": {
+    "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/NfcAime.Dll.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/NfcAime.Dll.csproj",
+        "projectName": "NfcAime.Dll",
+        "projectPath": "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/NfcAime.Dll.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/obj/",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "UsingMicrosoftNETSdk": false,
+        "configFilePaths": [
+          "/home/runner/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "DllExport": {
+              "target": "Package",
+              "version": "[1.8.1, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}

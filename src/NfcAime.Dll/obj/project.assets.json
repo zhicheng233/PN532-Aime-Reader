@@ -1,0 +1,140 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "DllExport/1.8.1": {
+        "type": "package",
+        "compile": {
+          "lib/net20/_._": {}
+        },
+        "runtime": {
+          "lib/net20/_._": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DllExport/1.8.1": {
+      "sha512": "0Nph8HJTMeSOvZ//VuQMKJPRVi7RdJmHA/IcA+TiWTP0+HR6NB0t95Dnn6K7wWI41h1XXJnu+EATif2HIdR+uw==",
+      "type": "package",
+      "path": "dllexport/1.8.1",
+      "hasTools": true,
+      "files": [
+        ".gitattributes",
+        ".nupkg.metadata",
+        ".pkg.install.txt",
+        ".release.version",
+        ".sha1",
+        ".signature.p7s",
+        ".version",
+        "3rd-party-NOTICES.txt",
+        "AUTHORS.txt",
+        "DllExport.bat",
+        "LICENSE.txt",
+        "Readme.md",
+        "build_info.txt",
+        "changelog.txt",
+        "dllexport.1.8.1.nupkg.sha512",
+        "dllexport.nuspec",
+        "hMSBuild.bat",
+        "lib/net20/_._",
+        "lib/netstandard1.1/_._",
+        "maps/DllExport.bat.map",
+        "maps/DllExport.bat.map.targets",
+        "tests.bat",
+        "tests/DiffVTests.bat",
+        "tests/DiffVswStreamTests.bat",
+        "tests/GetNuTool/_run.bat",
+        "tests/GetNuTool/a.bat",
+        "tests/GetNuTool/keysAndLogicTests.bat",
+        "tests/ManagerKeyTests.bat",
+        "tests/ManagerKeyTests.targets",
+        "tests/VswStreamTests.bat",
+        "tests/VswasTests.bat",
+        "tests/_run.bat",
+        "tests/a.bat",
+        "tests/dbgdcore.bat",
+        "tests/dbghcore.bat",
+        "tests/hMSBuild/a.bat",
+        "tests/keysAndLogicTests.bat",
+        "tools/Conari.dll",
+        "tools/Huid.dll",
+        "tools/Mono.Cecil.dll",
+        "tools/MvsSln.dll",
+        "tools/MvsSln.xml",
+        "tools/PeViewer.exe",
+        "tools/PeViewer.exe.config",
+        "tools/clrtypes/DefaultInterpolatedStringHandler/.cs",
+        "tools/coreclr/LICENSE.TXT",
+        "tools/coreclr/README.md",
+        "tools/coreclr/changelog.txt",
+        "tools/coreclr/ilasm.exe",
+        "tools/coreclr/ildasm.exe",
+        "tools/gnt.bat",
+        "tools/hMSBuild.bat",
+        "tools/init.ps1",
+        "tools/net.r_eg.DllExport.Activator.dll",
+        "tools/net.r_eg.DllExport.NSBin.dll",
+        "tools/net.r_eg.DllExport.Wizard.dll",
+        "tools/net.r_eg.DllExport.Wizard.targets",
+        "tools/net.r_eg.DllExport.dll",
+        "tools/net.r_eg.DllExport.targets",
+        "tools/netfx4sdk.cmd",
+        "tools/raw/lib/net20/DllExport.dll",
+        "tools/raw/lib/net20/DllExport.xml",
+        "tools/raw/lib/netstd/DllExport.dll",
+        "tools/raw/lib/netstd/DllExport.xml"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "DllExport >= 1.8.1"
+    ]
+  },
+  "packageFolders": {
+    "/home/runner/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/NfcAime.Dll.csproj",
+      "projectName": "NfcAime.Dll",
+      "projectPath": "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/NfcAime.Dll.csproj",
+      "packagesPath": "/home/runner/.nuget/packages/",
+      "outputPath": "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Dll/obj/",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "UsingMicrosoftNETSdk": false,
+      "configFilePaths": [
+        "/home/runner/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "projectReferences": {}
+        }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net472": {
+        "dependencies": {
+          "DllExport": {
+            "target": "Package",
+            "version": "[1.8.1, )"
+          }
+        }
+      }
+    }
+  }
+}

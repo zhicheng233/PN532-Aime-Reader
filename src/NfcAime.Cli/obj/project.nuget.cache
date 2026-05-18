@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "Wuug/aHAjjM=",
+  "success": true,
+  "projectFilePath": "/home/runner/work/PN532-Aime-Reader/PN532-Aime-Reader/src/NfcAime.Cli/Nfcaime.Cli.csproj",
+  "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/runtime.android-arm.runtime.native.system.io.ports/10.0.0/runtime.android-arm.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.android-arm64.runtime.native.system.io.ports/10.0.0/runtime.android-arm64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.android-x64.runtime.native.system.io.ports/10.0.0/runtime.android-x64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.android-x86.runtime.native.system.io.ports/10.0.0/runtime.android-x86.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-arm.runtime.native.system.io.ports/10.0.0/runtime.linux-arm.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-arm64.runtime.native.system.io.ports/10.0.0/runtime.linux-arm64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-bionic-arm64.runtime.native.system.io.ports/10.0.0/runtime.linux-bionic-arm64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-bionic-x64.runtime.native.system.io.ports/10.0.0/runtime.linux-bionic-x64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-musl-arm.runtime.native.system.io.ports/10.0.0/runtime.linux-musl-arm.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-musl-arm64.runtime.native.system.io.ports/10.0.0/runtime.linux-musl-arm64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-musl-x64.runtime.native.system.io.ports/10.0.0/runtime.linux-musl-x64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.linux-x64.runtime.native.system.io.ports/10.0.0/runtime.linux-x64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.maccatalyst-arm64.runtime.native.system.io.ports/10.0.0/runtime.maccatalyst-arm64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.maccatalyst-x64.runtime.native.system.io.ports/10.0.0/runtime.maccatalyst-x64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.native.system.io.ports/10.0.0/runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.osx-arm64.runtime.native.system.io.ports/10.0.0/runtime.osx-arm64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/runtime.osx-x64.runtime.native.system.io.ports/10.0.0/runtime.osx-x64.runtime.native.system.io.ports.10.0.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/system.io.ports/10.0.0/system.io.ports.10.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
