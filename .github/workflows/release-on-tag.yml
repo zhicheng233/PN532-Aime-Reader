@@ -1,0 +1,57 @@
+﻿name: Build and Release NfcAime.Dll on Tag
+on:
+  push:
+    tags:
+      - '*'
+permissions:
+  contents: write
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Restore NuGet packages (packages.config)
+        run: nuget restore .\src\NfcAime.Dll\packages.config -PackagesDirectory .\src\NfcAime.Dll\packages
+
+      - name: Restore .NET SDK packages
+        run: dotnet restore .\src\NfcAime.Cli\Nfcaime.Cli.csproj
+
+      - name: Build NfcAime (Release)
+        run: msbuild .\PN532-Aime-Reader.sln /p:Configuration=Release
+      - name: Generate commit notes since previous tag
+        shell: pwsh
+        run: |
+          $currentTag = "${{ github.ref_name }}"
+          $prevTag = git tag --sort=-creatordate | Where-Object { $_ -ne $currentTag } | Select-Object -First 1
+          if ($prevTag) {
+            $range = "$prevTag..$currentTag"
+            $commitTitle = "## Commits since $prevTag"
+          } else {
+            $range = $currentTag
+            $commitTitle = "## Commits in $currentTag"
+          }
+          $commits = git log $range --pretty=format:"- %s (%h)"
+          if (-not $commits) {
+            $commits = "- No commits found."
+          }
+          @"
+          ## Build Artifact
+          - NfcAime.Dll.dll (Release, PlatformTarget=x64)
+          $commitTitle
+          $commits
+          "@ | Out-File -FilePath RELEASE_NOTES.md -Encoding utf8
+      - name: Create GitHub Release and upload DLL
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          body_path: RELEASE_NOTES.md
+          files: |
+            src/NfcAime.Dll/bin/Release/NfcAime.Dll.dll
+          fail_on_unmatched_files: true
