@@ -28,7 +28,7 @@ jobs:
         run: nuget restore .\\PN532-Aime-Reader.sln
 
       - name: Build NfcAime.Dll (x64, no project references)
-        run: msbuild .\\src\\NfcAime.Dll\\NfcAime.Dll.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:BuildProjectReferences=false
+        run: msbuild .\\src\\NfcAime.Dll\\NfcAime.Dll.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:PlatformTarget=x64 /p:BuildProjectReferences=false
 
       - name: Generate commit notes since previous tag
         shell: pwsh
@@ -51,7 +51,7 @@ jobs:
 
           @"
           ## Build Artifact
-          - NfcAime.Dll.dll (x64, Release)
+          - NfcAime.Dll.dll (Release, PlatformTarget=x64)
 
           $commitTitle
           $commits
