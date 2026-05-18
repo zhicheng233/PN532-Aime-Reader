@@ -20,8 +20,11 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Restore NuGet packages
-        run: msbuild .\PN532-Aime-Reader.sln /t:Restore /p:Configuration=Release
+      - name: Restore NuGet packages (packages.config)
+        run: nuget restore .\src\NfcAime.Dll\packages.config -PackagesDirectory .\src\NfcAime.Dll\packages
+
+      - name: Restore .NET SDK packages
+        run: dotnet restore .\src\NfcAime.Cli\Nfcaime.Cli.csproj
 
       - name: Build NfcAime (Release)
         run: msbuild .\PN532-Aime-Reader.sln /p:Configuration=Release
